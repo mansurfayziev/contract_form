@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Успешно{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="col-md-10 mx-auto">
+        <br>
+<h2 class=" text-center">{{dog.date}}</h2>
+{% if dog.fio_cilent %}
+    <p class="fw-bold text-success fs-5 text-center">Договор подписан.</p>
+    <p class="mx-3" style="white-space: pre-wrap;">{{ dog.text|safe }}</p>
+    <br>
+    <p>Договор подписал: <b>{{dog.fio_cilent}}</b> </p>
+{% else %}
+    <p class="fw-bold text-danger fs-5 text-center">Договор не подписан.</p>
+    <p class="mx-3" style="white-space: pre-wrap;">{{ dog.text|safe }}</p>
+    <br>
+    <p class="h4">Ссылка для килента: <a href="{% url 'd_cilent' dog.id %}">{{ request.get_host }}{% url 'd_cilent' dog.id %}</a></p>
+
+{% endif %}
+   <br><br><br>
+</div>
+</div>
+{% endblock %}

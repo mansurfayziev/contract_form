@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Договор</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-8 mx-auto">
+            <br><br><br>
+            <div class="" id="police"></div>
+            {% include 'core/police.html' %}
+            <div class="text-end "><input type="checkbox" name="police" id="policer">
+                <label for="policer" class="mx-1"> Я согласен  </label></div>
+            <br><br><br><br>
+            <p class="mx-3" style="white-space: pre-wrap;">{{ dog.text|safe }}</p>
+            
+            <!-- Форма для ввода ФИО клиента -->
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="fio_cilent" class="mb-1">Для подписания договора напишите свое полное имя:</label>
+                    <input type="text" class="form-control" id="fio_cilent" placeholder="Напишите ФИО..." name="fio_cilent">
+                </div><br>
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-primary">{{ message }}</div>
+                {% endfor %}
+                {% endif %}
+                <a href="#police" id="policetxt" style="display: block;">Дайте согласие</a><br>
+                <button type="submit" disabled id="myButton" class="btn btn-dark mt-1">Подписывать договор</button>
+                
+            </form>
+        </div>
+        <br><br><br><br><br><br><br>
+    </div>
+
+    <script>
+        // Получаем ссылки на чекбокс и кнопку
+        var consentCheckbox = document.getElementById("policer");
+        var myButton = document.getElementById("myButton");
+
+        // Добавляем обработчик события для чекбокса
+        consentCheckbox.addEventListener("change", function() {
+            // Если чекбокс отмечен, активируем кнопку, иначе делаем её неактивной
+            if (consentCheckbox.checked) {
+                myButton.disabled = false;
+                document.getElementById('policetxt').style.display = 'none';
+            } else {
+                document.getElementById('policetxt').style.display = 'block';
+                myButton.disabled = true;
+            }
+        });
+    </script>
+</body>
+</html>

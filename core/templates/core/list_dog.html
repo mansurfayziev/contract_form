@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% block active3 %}active{% endblock %}
+
+{% block title %}Все Договоры{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="col-md-10 mx-auto">
+        <br>
+<h2 class=" text-center">Все Договоры</h2>
+</div>
+<br>    
+<div class=" text-center">
+    {% if dogs %}
+        {% for dog in dogs %}
+            {% if dog.fio_cilent %}
+            <p><a href="{% url 'detail' dog.id %}" class="text-decoration-none">{{dog.fio_cilent}} | {{dog.date}}</a></p>
+            {% else %}
+            <p><a href="{% url 'detail' dog.id %}" class="text-decoration-none"> <span class="text-danger"> Договор не подписан </span> | {{dog.date}}</a></p>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+    <h3 class="text-center text-info"> Договоры пока нету:)</h3>
+    {% endif %}
+</div>
+    
+
+</div>
+{% endblock %}

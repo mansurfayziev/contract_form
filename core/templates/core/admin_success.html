@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Успешно{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="col-md-10 mx-auto">
+<h2 class="text-success text-center">Договор успешно создана</h2>
+<br>
+    <p class="mx-3" style="white-space: pre-wrap;">{{ dog.text|safe }}</p>
+    <br>
+    
+    <p class="h4">Ссылка для килента: <a href="{% url 'd_cilent' dog_id %}">{{ request.get_host }}{% url 'd_cilent' dog_id %}</a></p>
+</div>
+</div>
+{% endblock %}

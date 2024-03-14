@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+ 
+{% block active1 %}active{% endblock %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<div class="container text-center">
+<h2 class="text-center">Главная</h2>
+<br>
+<a href="{% url 'd_admin' %}" class="btn btn-success">Новый Договор</a>
+<a href="{% url 'list_dog' %}" class="btn btn-primary">Все договоры</a>
+
+
+</div>
+
+{% endblock %}
